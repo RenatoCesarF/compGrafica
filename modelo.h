@@ -91,6 +91,14 @@ extern float zoom ;
 
 extern int rotacao ;
 
+extern int shoulder1;
+extern int elbow1;
+extern int shoulder2;
+extern int elbow2;
+extern int leg11;
+extern int leg12;
+extern int leg21;
+extern int leg22;
 
 double	calculaMovimentoBase(double angle_up, double angle_lo, double up, double lo) ;
 void	anima(void);

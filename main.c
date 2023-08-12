@@ -5,8 +5,16 @@ int window;
 float caminhar_angulos[2][6];
 
 double movimento_base = 0.0;
+shoulder1 = 0;
+elbow1 = 0;
+shoulder2 = 0;
+elbow2 = 0;
+leg11=0;
+leg12=0;
+leg21=0;
+leg22=0;
 
-float	angulo_virilhaE = 30 ,
+float	angulo_virilhaE = 30,
 		angulo_joelhoE  = 0,
 		angulo_virilhaD = -30,
 		angulo_joelhoD  = 0,
@@ -54,21 +62,6 @@ void display() {
 	glRotatef(rotacaoy,0.0,1.0,0.0);// rot,tran = moving
 	glRotatef(rotacaox,1.0,0.0,0.0);// rot,tran = moving
 
-
-
-  // glPushMatrix();
-  // glTranslatef(0.0,movimento_base,0.0);
-  // quadril();
-  // glTranslatef(0.0,-(ALTURA_QUADRIL),0.0);
-  // glPushMatrix();
-
-  // glTranslatef(LARGURA_TRONCO * 0.33,0.0,0.0);
-  // perna(ESQUERDA);
-  // glPopMatrix();
-
-  // glTranslatef(-LARGURA_TRONCO * 0.33,0.0,0.0);
-  // perna(DIREITA);
-  // glPopMatrix();
   quadril();
   pernas();
   torso();
@@ -81,25 +74,92 @@ void display() {
 	glutSwapBuffers();
 }
 
-void inputZoomAndAnimate(unsigned char tecla, int x, int y) {
-	if (tecla == '-'){
+void inputZoomAndAnimate(unsigned char key, int x, int y) {
+	if (key == '-'){
 		zoom -= 0.5;
 		glutPostRedisplay() ;
 		return;
 	}	
-	if (tecla == '+'){
+	if (key == '+'){
 		zoom += 0.5;
 		glutPostRedisplay() ;
 		return;
 	}	
-	if(tecla == 27){
+	if(key == 27){
 		glutDestroyWindow(window); 
 	}
-	if(tecla =='a'){
-		anima();
 
-		glutPostRedisplay();
-	}
+   switch (key) {
+      case 'a':
+        anima();
+		    glutPostRedisplay();
+        break;
+      case 's':
+         shoulder1 = (shoulder1 + 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'S':
+         shoulder1 = (shoulder1 - 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'e':
+         elbow1 = (elbow1 + 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'E':
+         elbow1 = (elbow1 - 5) % 360;
+         glutPostRedisplay();
+         break;  
+      case 'd':
+         shoulder2 = (shoulder2 + 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'D':
+         shoulder2 = (shoulder2 - 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'f':
+         elbow2 = (elbow2 + 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'F':
+         elbow2 = (elbow2 - 5) % 360;
+         glutPostRedisplay();
+
+         break;
+      case 'l':
+         leg11 = (leg11 + 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'L':
+         leg11 = (leg11 - 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'm':
+         leg12 = (leg12 + 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'M':
+         leg12 = (leg12 - 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'n':
+         leg21 = (leg21 + 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'N':
+         leg21 = (leg21 - 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'o':
+         leg22 = (leg22 + 5) % 360;
+         glutPostRedisplay();
+         break;
+      case 'O':
+         leg22 = (leg22 - 5) % 360;
+         glutPostRedisplay();
+         break;
+   }
 }
 
 void inputCameraControl( int tecla, int x, int y )  {
