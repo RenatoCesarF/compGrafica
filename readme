@@ -1,1 +1,5 @@
 gcc -o main main.c -framework GLUT -framework OpenGL -w && ./main
+
+
+Renato Cesar Ferreira Barcellos
+Jean Fernandes Flores
